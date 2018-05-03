@@ -3,6 +3,7 @@ package fr.WCS.devoirfait.controler;
 
 import fr.WCS.devoirfait.dao.UserRepository;
 import fr.WCS.devoirfait.model.User;
+import fr.WCS.devoirfait.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,11 +24,13 @@ public class UserController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        User n = new User();
-        n.setLastName(name);
-        n.setEmail(email);
-        userRepository.save(n);
-        return "Saved";
+        User user = new User();
+        user.setLastName(name);
+        user.setEmail(email);
+        UserService.saveUser(user);
+        return "Create";
+
+        //https://www.tutorialspoint.com/jpa/jpa_entity_managers.htm
     }
 
 
